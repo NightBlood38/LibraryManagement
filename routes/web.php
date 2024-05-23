@@ -42,12 +42,6 @@ Route::get('/test-first-loan-member', function () {
 Route::get('/test-first-loan-book', function () {
     dd(loan::first()->book);
 });
-Route::get('/book', function () {
-    return view('books');
-});
-Route::get('/author', function () {
-    return view('authors');
-});
 // crud routes for book, member, loan
 Route::resource('books', bookController::class);
 Route::resource('members', memberController::class);

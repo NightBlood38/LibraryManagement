@@ -30,9 +30,10 @@ class memberController extends Controller
     {
         return view('members.create');
     }
-    public function edit(member  $member )
+    public function edit($memberId)
     {
-        return view('members.edit', compact('member '));
+            $member = member::findOrFail($memberId);
+        return view('members.edit', compact('member'));
     }
     public function store(Request $request)
     {
@@ -55,6 +56,12 @@ class memberController extends Controller
         ]);
         $member->update($validatedData);
         return redirect()->route('members.index')->with('success', 'Könyvtári tag adatai sikeresen módosítva.');
+    }
+    public function destroy($id)
+    {
+        $member = member::findOrFail($id);
+        $member->delete();
+        return redirect()->route('members.index')->with('success', 'A könyvtári tag sikeresen törölve.');
     }
 public function listLoans($memberId)
     {

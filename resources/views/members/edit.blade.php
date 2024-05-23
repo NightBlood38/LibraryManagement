@@ -46,5 +46,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Adatok módosítása</button>
     </form>
+    <form action="{{ route('members.destroy', $member->id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné ezt a könyvtári tagot?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Törlés</button>
+    </form>
 </div>
 @endsection

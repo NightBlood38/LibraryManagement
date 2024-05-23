@@ -34,15 +34,16 @@
                     <td>
                         <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm">Megtekintés</a>
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Módosítás</a>
-                        <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Törlés</button>
-                        </form>
+    <form action="{{ route('books.destroy', $book->id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné ezt a könyvet?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Törlés</button>
+    </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+{{ $books->links() }}
 </div>
 @endsection

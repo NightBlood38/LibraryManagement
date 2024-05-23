@@ -17,11 +17,9 @@
         <div class="container">
             <ul>
                 <li><a href="#">Kezdőoldal</a></li>
-                <li><a href="books">Könyvek listázása</a></li>
-                <li><a href="members">Könyvtári tagok listázása</a></li>
+                <li><a href="books">Könyvek</a></li>
+                <li><a href="members">Könyvtári tagok</a></li>
                 <li><a href="loans">Kölcsönzések</a></li>
-                <li><a href="book">Könyvek</a></li>
-                <li><a href="author">Szerzők</a></li>
             </ul>
         </div>
     </nav>

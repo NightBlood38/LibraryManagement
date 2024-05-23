@@ -27,15 +27,16 @@
                     <td>
                         <a href="{{ route('members.show', $member) }}" class="btn btn-info btn-sm">Megtekintés</a>
                         <a href="{{ route('members.edit', $member) }}" class="btn btn-warning btn-sm">Szerkesztés</a>
-                        <form action="{{ route('members.destroy', $member) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Törlés</button>
-                        </form>
+    <form action="{{ route('members.destroy', $member->id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné ezt a könyvtári tagot?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Törlés</button>
+    </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+{{ $members->links() }}
 </div>
 @endsection

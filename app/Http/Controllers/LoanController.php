@@ -12,7 +12,7 @@ class LoanController extends Controller
 {
     public function index()
     {
-        $loans = Loan::with('member', 'book')->paginate(10);
+        $loans = Loan::query()->paginate(10);
         return view('loans.index', compact('loans'));
     }
 
@@ -66,7 +66,7 @@ public function edit($id)
 
         $loan->member_id = $request->input('member_id');
         $loan->book_id = $request->input('book_id');
-        $loan->return_date = $loan->calculate_loan_deadline();
+        $loan->return_date = null;
         $loan->save();
 
         return redirect()->route('loans.index')->with('success', 'Sikerült a kölcsönzés módosítása.');
@@ -76,7 +76,7 @@ public function edit($id)
     {
         $loan = Loan::findOrFail($id);
         $loan->delete();
-        return redirect()->route('loans.index')->with('success', 'A külcsönzés sikeresen törölve.');
+        return redirect()->route('loans.index')->with('success', 'A kölcsönzés sikeresen törölve.');
     }
 
     public function returnBook($id)
