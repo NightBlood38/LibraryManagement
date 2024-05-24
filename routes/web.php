@@ -10,6 +10,7 @@ use App\Models\librarian;
 use App\Http\Controllers\bookController;
 use App\Http\Controllers\memberController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\DashboardController;
 // get librarians data (http://localhost:8000/librarians)
 Route::get('/test-librarians', function () {
     dd(Librarian::all());

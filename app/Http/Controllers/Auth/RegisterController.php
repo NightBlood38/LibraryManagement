@@ -39,7 +39,12 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+protected function generateUsername($email)
+{
+        $username = substr($email, 0, strpos($email, '@'));
+    $count = User::where('username', 'like', $username . '%')->count();
+        return $count > 0 ? $username . ($count + 1) : $username;
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -65,6 +70,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'username' => $this->generateUsername($data['email']),
             'password' => Hash::make($data['password']),
         ]);
     }
