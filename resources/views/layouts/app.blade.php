@@ -53,20 +53,23 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+<a href="{{ route('logout') }}"
+    onclick="event.preventDefault();
+             document.getElementById('logout-form').submit();">
+    Kijelentkezés
+</a>
                                 </div>
                             </li>
                         @endguest
+@auth
+                <li><a href="books">Könyvek</a></li>
+                <li><a href="members">Könyvtári tagok</a></li>
+                <li><a href="loans">Kölcsönzések</a></li>
+@endauth
                     </ul>
                 </div>
             </div>
@@ -75,6 +78,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Library Management System. All rights reserved.</p>
+        </div>
+    </footer>
     </div>
 </body>
 </html>

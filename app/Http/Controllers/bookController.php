@@ -9,11 +9,6 @@ class bookController extends Controller
     public function index(Request $request)
     {
         $query = book::query();
-        if ($request->filled('search_term')) {
-            $filter = $request->input('filter');
-            $searchTerm = '%' . $request->input('search_term') . '%';
-$query->where($filter, 'like', $searchTerm);
-        }
         $books = $query->paginate(10);
              return view('books.index', compact('books'));
     }
